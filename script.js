@@ -4,11 +4,20 @@ const form = document.querySelector('form');
 const input = document.querySelector('#txtTaskName');
 const btnDeleteAll = document.querySelector('#btnDeleteAll');
 const taskList = document.querySelector('#task-list');
+const items = []
 
 eventListeners();
 
 function eventListeners() {
+    // Yeni iş ekleme
     form.addEventListener('submit', addNewItem);
+
+    // İş Silme
+    taskList.addEventListener('click', deleteItem);
+
+    //Hepsini Silme
+    btnDeleteAll.addEventListener('click', deleteAllItems);
+
 }
 
 function addNewItem(e) {
@@ -29,4 +38,19 @@ function addNewItem(e) {
 
 
     e.preventDefault();
+}
+
+function deleteItem(e) {
+    if (e.target.className === 'fas fa-times') {
+        e.target.parentElement.parentElement.
+        remove();
+    }
+    e.preventDefault();
+}
+
+
+function deleteAllItems(e) {
+    taskList.innerHTML='';
+    e.preventDefault();
+
 }
